@@ -40,7 +40,9 @@ public class Main extends Application {
                 Scene scene = new Scene(root, 500, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
 
-                //primaryStage.setResizable(false);
+//                primaryStage.setMinWidth(400);
+//                primaryStage.setMinHeight(400);
+//                primaryStage.setResizable(false);
                 primaryStage.setTitle("Reversi");
                 primaryStage.setScene(scene);
                 primaryStage.show();

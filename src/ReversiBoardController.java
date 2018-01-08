@@ -1,5 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
@@ -12,12 +13,20 @@ public class ReversiBoardController implements Initializable {
             {0,0,0,0},
             {0,0,0,0},
             {0,0,0,0},
+            {0,0,0,0},
+            {0,0,0,0},
+            {0,0,0,0},
+            {0,0,0,0},
+            {0,0,0,0},
+            {0,0,0,0},
             {0,0,0,0}
     };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ReversiBoard reversiBoard = new ReversiBoard(board);
+        //reversiBoard.setVisible(true);
+        reversiBoard.setGridLinesVisible(true);
         reversiBoard.setPrefWidth(400);
         reversiBoard.setPrefHeight(400);
         root.getChildren().add(0, reversiBoard);
