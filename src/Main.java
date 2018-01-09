@@ -18,6 +18,7 @@ public class Main extends Application {
     Scene layoutDisplay;
     Button startGameButton;
     Button settingsButton;
+    Button closeButton;
 
 
 //    public static void main(String[] args) {
@@ -32,24 +33,27 @@ public class Main extends Application {
         VBox layoutMain = new VBox(20);
         layoutDisplay = new Scene(layoutMain, 300, 300);
 
+        // set height and width of window
+        mainWindow.setMinWidth(140);
+        mainWindow.setMinHeight(200);
+
         // define the main windows buttons
         startGameButton = new Button("Start game!");
         startGameButton.setOnAction(e -> {
             try {
-                HBox root = (HBox)FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+                HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
                 Scene scene = new Scene(root, 500, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
 
-//                primaryStage.setMinWidth(400);
-//                primaryStage.setMinHeight(400);
-//                primaryStage.setResizable(false);
+                primaryStage.setMinWidth(450);
+                primaryStage.setMinHeight(400);
                 primaryStage.setTitle("Reversi");
                 primaryStage.setScene(scene);
                 primaryStage.show();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            Game.run();
+            //Game.run();
 
 //            Label l1 = new Label("l1");
 //            Label l2 = new Label("l2");
@@ -74,9 +78,14 @@ public class Main extends Application {
         settingsButton = new Button("Settings");
         settingsButton.setOnAction(e -> SettingsWindow.display());
         settingsButton.setMinWidth(MINBUTTONSIZE);
+        closeButton = new Button("Close");
+        closeButton.setMinWidth(100);
+        closeButton.setOnMouseClicked(e -> {
+            mainWindow.close();
+        });
 
         layoutMain.setAlignment(Pos.CENTER);
-        layoutMain.getChildren().addAll(startGameButton, settingsButton);
+        layoutMain.getChildren().addAll(startGameButton, settingsButton, closeButton);
 
         // set all of the main windows properties
         primaryStage.setTitle("Reversi");

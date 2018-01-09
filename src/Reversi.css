@@ -1,6 +1,7 @@
 /*.root {*/
     /*-fx-background-image: url("background.jpg")*/
 /*}*/
+
 .label {
     -fx-font-size: 12px;
     -fx-font-weight: bold;
@@ -8,8 +9,11 @@
 .button {
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-background-color: darksalmon;
+    -fx-border-color: black;
+    /*-fx-background-color: linear-gradient(#61a2b1, #2A5058);*/
 }
+
 #welcomeText {
     -fx-font-size: 32px;
     -fx-font-family: Arial;

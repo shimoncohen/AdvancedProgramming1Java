@@ -4,4 +4,5 @@ public class Enum {
      * a player may be the black , white pieces or not defined.
      */
     public enum type {blackPlayer, whitePlayer, notDefined};
+    public enum boardChar {black, white, space};
 }

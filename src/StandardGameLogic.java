@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class StandardGameLogic implements GameLogic {
-    public ArrayList<Point> availableMoves(Board board, Enum.type type1) {
+    public ArrayList<Point> availableMoves(ReversiBoard board, Enum.type type1) {
         char a, o;
         ArrayList<Point> options = new ArrayList<Point>();
         if(type1 == Enum.type.blackPlayer) {
@@ -37,7 +37,7 @@ public class StandardGameLogic implements GameLogic {
         return options;
     }
 
-    public boolean validOption(Board board, int x, int y, ArrayList<Point> options) {
+    public boolean validOption(ReversiBoard board, int x, int y, ArrayList<Point> options) {
         if(isGameWon(board)) {
             return true;
         }
@@ -53,7 +53,7 @@ public class StandardGameLogic implements GameLogic {
         return false;
     }
 
-    public void changeTiles(Enum.type type, int x, int y, Board board) {
+    public void changeTiles(Enum.type type, int x, int y, ReversiBoard board) {
         char o;
         board.putTile(x, y, type);
         if(type == Enum.type.blackPlayer) {
@@ -74,7 +74,7 @@ public class StandardGameLogic implements GameLogic {
         }
     }
 
-    public char gameWon(Board board) {
+    public char gameWon(ReversiBoard board) {
         int blackPieces = 0, whitePieces = 0;
         //counts the black and white pieces on the board.
         for(int i = 0; i < board.getSize(); i++) {
@@ -96,7 +96,7 @@ public class StandardGameLogic implements GameLogic {
         }
     }
 
-    public boolean isGameWon(Board board) {
+    public boolean isGameWon(ReversiBoard board) {
         //check if board is full.
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
@@ -108,7 +108,7 @@ public class StandardGameLogic implements GameLogic {
         return false;
     }
 
-    public boolean gameFinalMove(Board board, Enum.type pType, int x, int y) {
+    public boolean gameFinalMove(ReversiBoard board, Enum.type pType, int x, int y) {
         if (x == -2 && y == -2) {
             return true;
         }
@@ -126,7 +126,7 @@ public class StandardGameLogic implements GameLogic {
         return false;
     }
 
-    public boolean validMove(Board board, int x, int y, int right, int down, char piece, int iteration) {
+    public boolean validMove(ReversiBoard board, int x, int y, int right, int down, char piece, int iteration) {
         if(x > board.getSize() || y > board.getSize() || x < 0 || y < 0 || board.checkCell(x, y) == ' ') {
             return false;
         }
@@ -137,7 +137,7 @@ public class StandardGameLogic implements GameLogic {
         return validMove(board, x + right, y + down, right, down, piece, iteration + 1);
     }
 
-    public void flipTiles(char type, int x, int y, int right, int down, Board board) {
+    public void flipTiles(char type, int x, int y, int right, int down, ReversiBoard board) {
         if(board.checkCell(x, y) == type || board.checkCell(x, y) == ' '
                 || (x > board.getSize() || y > board.getSize() || x < 0 || y < 0)) {
             return;
