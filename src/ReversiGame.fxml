@@ -12,7 +12,7 @@
             prefHeight="400.0" prefWidth="600.0"
             fx:id="root">
     <VBox spacing="10">
-        <Button>Strart Game</Button>
-        <Button>End Game</Button>
+        <Button fx:id="start" onMouseClicked="#startGame">Strart Game</Button>
+        <Button onMouseClicked="#endGame">End Game</Button>
     </VBox>
 </HBox>
