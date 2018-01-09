@@ -32,7 +32,7 @@ public class Controller {
     }
 
     @FXML
-    void exitWindow() {
+    public void exitWindow() {
         this.exitWindow();
     }
 }

@@ -20,9 +20,9 @@ public class Main extends Application {
     Button settingsButton;
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
