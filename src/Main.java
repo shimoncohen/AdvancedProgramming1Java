@@ -21,9 +21,9 @@ public class Main extends Application {
     Button closeButton;
 
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -45,7 +45,7 @@ public class Main extends Application {
                 Scene scene = new Scene(root, 500, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
 
-                primaryStage.setMinWidth(450);
+                primaryStage.setMinWidth(500);
                 primaryStage.setMinHeight(400);
                 primaryStage.setTitle("Reversi");
                 primaryStage.setScene(scene);

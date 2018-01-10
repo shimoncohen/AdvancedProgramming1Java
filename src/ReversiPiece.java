@@ -43,7 +43,8 @@ public class ReversiPiece extends Circle {
             this.setFill(Color.BLACK);
             this.setStroke(Color.BLACK);
         } else if(this.type == Enum.type.notDefined) {
-            this.setFill(Paint.valueOf("#f4f4f4"));
+//            this.setFill(Paint.valueOf("#f4f4f4"));
+            this.setFill(Color.BURLYWOOD);
         } else if(this.type == Enum.type.whitePlayer) {
             this.setFill(Color.WHITE);
             this.setStroke(Color.BLACK);

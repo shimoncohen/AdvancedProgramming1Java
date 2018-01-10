@@ -59,4 +59,11 @@ public interface GameLogic {
      * operation: plays given move on board and returns true if the given move was the final move, false otherwise.
      */
     boolean gameFinalMove(ReversiBoard board, Enum.type pType, int x, int y);
+    /*
+     * function name: playerGrade.
+     * input: the game board and the player type.
+     * output: the given players number of pieces on the board.
+     * operation: returns a given players score (number of pieces).
+     */
+    int playerGrade(ReversiBoard board, Enum.type type);
 }

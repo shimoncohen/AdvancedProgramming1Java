@@ -127,22 +127,11 @@ public class ReversiBoard extends GridPane {
 //                    //this.board[1][1].draw(cellWidth,cellHeight);
 //                    //circle.setFill(Color.BLACK);
 //                });
-                this.board[i][j].onMouseClickedProperty().setValue(e -> {
-//                    ((ReversiPiece)this.getChildren().get(0)).setState(1);
-//                    Object object = ((Circle)e.getSource()).getParent();
-                    ReversiPiece temp = (ReversiPiece)e.getSource();
-                    ArrayList<Point> availableMoves = logic.availableMoves(this, Enum.type.blackPlayer);
-                    if(logic.validOption(this, temp.getRow() + 1, temp.getCol() + 1, availableMoves)) {
-                        //if (temp.getType() == Enum.type.notDefined) {
-                        logic.changeTiles(Enum.type.blackPlayer, temp.getRow(), temp.getCol(), this);
-                            ((Circle) e.getSource()).setFill(Color.BLACK);
-                            temp.setType(Enum.type.blackPlayer);
-                        //}
-                    }
-//                    circle.setFill(Color.BLACK);
-//                    circle.setFill(Color.BLACK);
-                });
             }
         }
+    }
+
+    public ReversiPiece[][] getBoard() {
+        return board;
     }
 }

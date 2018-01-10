@@ -6,14 +6,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ReversiBoardController"
             prefHeight="400.0" prefWidth="600.0"
             fx:id="root">
-    <VBox minWidth="120" spacing="10" alignment="CENTER">
+    <VBox minWidth="140" spacing="10" alignment="TOP_CENTER">
         <Button minWidth="110" fx:id="start" onMouseClicked="#startGame">Strart Game</Button>
         <Button minWidth="110" onMouseClicked="#endGame">End Game</Button>
+        <HBox>
+            <Label>Current player:</Label>
+        </HBox>
+        <HBox>
+            <Label fx:id="playingPlayer">player</Label>
+        </HBox>
+        <HBox>
+            <Label>Black score:</Label>
+            <Label fx:id="whiteScoreLabel">2</Label>
+        </HBox>
+        <HBox>
+            <Label>White score:</Label>
+            <Label fx:id="blackScoreLabel">2</Label>
+        </HBox>
+        <HBox prefHeight="100" alignment="CENTER">
+            <Label fx:id="winnerLabel" visible="false">win!</Label>
+        </HBox>
         <!--<Button minWidth="110">Close</Button>-->
     </VBox>
 </HBox>

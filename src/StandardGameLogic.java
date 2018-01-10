@@ -97,6 +97,10 @@ public class StandardGameLogic implements GameLogic {
     }
 
     public boolean isGameWon(ReversiBoard board) {
+//        if(availableMoves(board, Enum.type.whitePlayer).size() == 0
+//                && availableMoves(board, Enum.type.blackPlayer).size() == 0) {
+//            return true;
+//        }
         //check if board is full.
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
@@ -105,7 +109,7 @@ public class StandardGameLogic implements GameLogic {
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public boolean gameFinalMove(ReversiBoard board, Enum.type pType, int x, int y) {
@@ -149,5 +153,26 @@ public class StandardGameLogic implements GameLogic {
         }
         //flip all of the valid move tiles.
         flipTiles(type, x + right, y + down, right, down, board);
+    }
+
+    public int playerGrade(ReversiBoard board, Enum.type type) {
+        int count = 0;
+        // players symbol
+        char symbol = ' ';
+        // check players type
+        if(type == Enum.type.blackPlayer) {
+            symbol = 'x';
+        } else if(type == Enum.type.whitePlayer) {
+            symbol = 'o';
+        }
+        // go over board and count players pieces
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.checkCell(i, j) == symbol) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

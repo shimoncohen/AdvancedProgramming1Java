@@ -14,6 +14,10 @@
     /*-fx-background-color: linear-gradient(#61a2b1, #2A5058);*/
 }
 
+#playingPlayer {
+    -fx-text-fill: aqua;
+}
+
 #welcomeText {
     -fx-font-size: 32px;
     -fx-font-family: Arial;
