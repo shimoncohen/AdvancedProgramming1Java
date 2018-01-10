@@ -6,9 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import jdk.nashorn.internal.objects.annotations.Property;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -41,38 +44,19 @@ public class Main extends Application {
         startGameButton = new Button("Start game!");
         startGameButton.setOnAction(e -> {
             try {
+                Stage gameWindow = new Stage();
                 HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
                 Scene scene = new Scene(root, 500, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
-
-                primaryStage.setMinWidth(500);
-                primaryStage.setMinHeight(400);
-                primaryStage.setTitle("Reversi");
-                primaryStage.setScene(scene);
-                primaryStage.show();
+                gameWindow.setMinWidth(500);
+                gameWindow.setMinHeight(400);
+                gameWindow.setTitle("Reversi");
+                gameWindow.setScene(scene);
+                gameWindow.show();
+                primaryStage.close();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            //Game.run();
-
-//            Label l1 = new Label("l1");
-//            Label l2 = new Label("l2");
-//
-//            BorderPane gameLayout = new BorderPane();
-//            VBox gameInfo = new VBox(10);
-//            gameInfo.setAlignment(Pos.CENTER);
-//            gameInfo.getChildren().addAll(l1, l2);
-//            int[][] b = new int[4][4];
-//            ReversiBoard board = new ReversiBoard(b);
-//            board.setAlignment(Pos.CENTER);
-//            //board.getChildren().addAll(l3, l4);
-//            gameLayout.leftProperty().setValue(board);
-//            gameLayout.rightProperty().setValue(gameInfo);
-//            Button temp = new Button();
-//            gameLayout.getChildren().add(temp);
-//            layoutDisplay = new Scene(gameLayout, 300, 300);
-//            primaryStage.setScene(layoutDisplay);
-//            primaryStage.show();
         });
         startGameButton.setMinWidth(MINBUTTONSIZE);
         settingsButton = new Button("Settings");

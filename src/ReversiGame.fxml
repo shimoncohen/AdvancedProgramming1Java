@@ -12,7 +12,7 @@
             fx:controller="ReversiBoardController"
             prefHeight="400.0" prefWidth="600.0"
             fx:id="root">
-    <VBox minWidth="140" spacing="10" alignment="TOP_CENTER">
+    <VBox fx:id="info">
         <Button minWidth="110" fx:id="start" onMouseClicked="#startGame">Strart Game</Button>
         <Button minWidth="110" onMouseClicked="#endGame">End Game</Button>
         <HBox>
@@ -23,11 +23,11 @@
         </HBox>
         <HBox>
             <Label>Black score:</Label>
-            <Label fx:id="whiteScoreLabel">2</Label>
+            <Label fx:id="blackScoreLabel">2</Label>
         </HBox>
         <HBox>
             <Label>White score:</Label>
-            <Label fx:id="blackScoreLabel">2</Label>
+            <Label fx:id="whiteScoreLabel">2</Label>
         </HBox>
         <HBox prefHeight="100" alignment="CENTER">
             <Label fx:id="winnerLabel" visible="false">win!</Label>

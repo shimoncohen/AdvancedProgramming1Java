@@ -14,6 +14,25 @@
     /*-fx-background-color: linear-gradient(#61a2b1, #2A5058);*/
 }
 
+#reversiBoard {
+    -fx-background-color: green;
+    -fx-border-color: black;
+    -fx-border-width: 10px;
+    -fx-stroke-line-cap: square;
+    -fx-vertical-grid-lines-visible: true;
+    -fx-horizontal-grid-lines-visible: true;
+    -fx-grid-lines-visible: true;
+    /*-fx-background-image: url("Game-Board.gif");*/
+    /*javafx.scene.image.ImageView img = new javafx.scene.image.ImageView("Game-Board.gif");*/
+    /*img.fitWidthProperty().bind(this.widthProperty());*/
+}
+
+#info {
+    -fx-min-width: 140px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
 #playingPlayer {
     -fx-text-fill: aqua;
 }

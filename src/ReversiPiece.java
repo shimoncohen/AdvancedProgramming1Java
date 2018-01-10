@@ -37,14 +37,14 @@ public class ReversiPiece extends Circle {
 //        } else if(this.getFill() == Color.WHITE) {
 //            this.state = 2;
 //        }
-        this.setFill(Color.BLACK);
+//        this.setFill(Color.BLACK);
         this.setRadius(cellHeight / 2 - 4);
         if(this.type == Enum.type.blackPlayer) {
             this.setFill(Color.BLACK);
             this.setStroke(Color.BLACK);
         } else if(this.type == Enum.type.notDefined) {
 //            this.setFill(Paint.valueOf("#f4f4f4"));
-            this.setFill(Color.BURLYWOOD);
+            this.setFill(Color.GREEN);
         } else if(this.type == Enum.type.whitePlayer) {
             this.setFill(Color.WHITE);
             this.setStroke(Color.BLACK);
