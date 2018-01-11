@@ -1,17 +1,10 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.objects.annotations.Property;
-
-import java.awt.*;
 
 public class Main extends Application {
 
@@ -58,9 +51,10 @@ public class Main extends Application {
                 e1.printStackTrace();
             }
         });
+        SettingsWindow settingsWindow = new SettingsWindow();
         startGameButton.setMinWidth(MINBUTTONSIZE);
         settingsButton = new Button("Settings");
-        settingsButton.setOnAction(e -> SettingsWindow.display());
+        settingsButton.setOnAction(e -> settingsWindow.display());
         settingsButton.setMinWidth(MINBUTTONSIZE);
         closeButton = new Button("Close");
         closeButton.setMinWidth(100);

@@ -16,10 +16,10 @@ public interface GameLogic {
      * output: none.
      * operation: flips all of the tiles in the vectors way that are valid moves.
      */
-    void flipTiles(char type, int x, int y, int right, int down, ReversiBoard board);
+    void flipTiles(char type, int x, int y, int right, int down, ReversiBoard board, Player player);
     /*
      * function name: availableMoves.
-     * input: type- the player type(black/white). board- the game board.
+     * input: type- the player type(black/white). board- the game board player - the player.
      * output: a vector of points indicating the available moves.
      * operation: searches the board for available moves for the current player.
      */
@@ -33,11 +33,11 @@ public interface GameLogic {
     boolean validOption(ReversiBoard board, int x, int y, ArrayList<Point> options);
     /*
      * function name: changeTiles.
-     * input: type- the player type(black/white). x- the row. y- the column. board- the game board.
+     * input: the player. x- the row. y- the column. board- the game board.
      * output: none.
      * operation: changes the tiles on the board according to the game logic.
      */
-    void changeTiles(Enum.type type, int x, int y, ReversiBoard board);
+    void changeTiles(Player player, int x, int y, ReversiBoard board);
     /*
      * function name: gameWon.
      * input: none.

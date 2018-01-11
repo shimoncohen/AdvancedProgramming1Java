@@ -5,12 +5,12 @@ public class Game {
     private Player1 secondPlayer;
 
     // constructor
-    Game(int boardSize, GameLogic newGameLogic, Player1 first, Player1 second) {
-        this.gameLogic = newGameLogic;
-        this.board = new ReversiBoard(boardSize, newGameLogic);
-        this.firstPlayer = first;
-        this.secondPlayer = second;
-    }
+//    Game(int boardSize, GameLogic newGameLogic, Player1 first, Player1 second) {
+//        this.gameLogic = newGameLogic;
+//        this.board = new ReversiBoard(boardSize, newGameLogic);
+//        this.firstPlayer = first;
+//        this.secondPlayer = second;
+//    }
 
     public static void run() {
 

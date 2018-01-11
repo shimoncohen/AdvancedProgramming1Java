@@ -1,22 +1,17 @@
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-
 public class ReversiBoard extends GridPane {
     private ReversiPiece[][] board;
-//    private Board behindBoard;
     private int size;
+    private Color firstColor;
+    private Color secondColor;
 
-    public ReversiBoard(int size, GameLogic gameLogic) {
+    public ReversiBoard(int size, Color firstColor, Color secondColor) {
+        this.firstColor = firstColor;
+        this.secondColor = secondColor;
         this.setStyle("-fx-border: 2px; -fx-border-color: black");
         this.setGridLinesVisible(true);
         this.setId("reversiBoard");
@@ -29,9 +24,13 @@ public class ReversiBoard extends GridPane {
         for(int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
                 this.board[i][j] = new ReversiPiece(this, i , j);
-//                this.setBorder();
             }
         }
+
+        this.board[size / 2 - 1][size / 2 - 1].setFill(secondColor);
+        this.board[size / 2 - 1][size / 2].setFill(firstColor);
+        this.board[size / 2][size / 2 - 1].setFill(firstColor);
+        this.board[size / 2][size / 2].setFill(secondColor);
         this.board[size / 2 - 1][size / 2 - 1].setType(Enum.type.whitePlayer);
         this.board[size / 2 - 1][size / 2].setType(Enum.type.blackPlayer);
         this.board[size / 2][size / 2 - 1].setType(Enum.type.blackPlayer);
@@ -52,13 +51,13 @@ public class ReversiBoard extends GridPane {
         return ' ';
     }
 
-    public void putTile(final int x, final int y, final Enum.type type) {
+    public void putTile(final int x, final int y, final Player player) {
         // put a value in the cell according to type.
-        if(type == Enum.type.blackPlayer) {
-            this.board[x][y].setFill(Color.BLACK);
+        if(player.getType() == Enum.type.blackPlayer) {
+            this.board[x][y].setFill(Paint.valueOf(player.getColor().toString()));
             this.board[x][y].setType(Enum.type.blackPlayer);
-        } else if(type == Enum.type.whitePlayer) {
-            this.board[x][y].setFill(Color.WHITE);
+        } else if(player.getType() == Enum.type.whitePlayer) {
+            this.board[x][y].setFill(Paint.valueOf(player.getColor().toString()));
             this.board[x][y].setType(Enum.type.whitePlayer);
         } else {
             this.board[x][y].setFill(Color.GREEN);

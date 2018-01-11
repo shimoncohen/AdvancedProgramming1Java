@@ -53,10 +53,10 @@ public class StandardGameLogic implements GameLogic {
         return false;
     }
 
-    public void changeTiles(Enum.type type, int x, int y, ReversiBoard board) {
+    public void changeTiles(Player player, int x, int y, ReversiBoard board) {
         char o;
-        board.putTile(x, y, type);
-        if(type == Enum.type.blackPlayer) {
+        board.putTile(x, y, player);
+        if(player.getType() == Enum.type.blackPlayer) {
             //players piece, to search for valid flips.
             o = 'x';
         } else {
@@ -68,7 +68,7 @@ public class StandardGameLogic implements GameLogic {
                 //if the cell is a valid move.
                 if ((i != 0 || k != 0) && validMove(board, x, y, i, k, o, 0)) {
                     //flip all of the tiles for each valid move.
-                    flipTiles(o, x + i, y + k, i, k, board);
+                    flipTiles(o, x + i, y + k, i, k, board, player);
                 }
             }
         }
@@ -141,18 +141,18 @@ public class StandardGameLogic implements GameLogic {
         return validMove(board, x + right, y + down, right, down, piece, iteration + 1);
     }
 
-    public void flipTiles(char type, int x, int y, int right, int down, ReversiBoard board) {
+    public void flipTiles(char type, int x, int y, int right, int down, ReversiBoard board, Player player) {
         if(board.checkCell(x, y) == type || board.checkCell(x, y) == ' '
                 || (x > board.getSize() || y > board.getSize() || x < 0 || y < 0)) {
             return;
         }
         if(type == 'x') {
-            board.putTile(x, y, Enum.type.blackPlayer);
+            board.putTile(x, y, player);
         } else if(type == 'o') {
-            board.putTile(x, y, Enum.type.whitePlayer);
+            board.putTile(x, y, player);
         }
         //flip all of the valid move tiles.
-        flipTiles(type, x + right, y + down, right, down, board);
+        flipTiles(type, x + right, y + down, right, down, board, player);
     }
 
     public int playerGrade(ReversiBoard board, Enum.type type) {

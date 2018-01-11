@@ -1,14 +1,9 @@
-import com.sun.deploy.panel.ExceptionListDialog;
-import com.sun.javafx.scene.layout.region.Margins;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.AccessibleRole;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -32,17 +27,36 @@ public class ReversiBoardController implements Initializable {
     private Player second;
     private Player current;
     private Player other;
-    GameLogic logic;
+    private GameLogic logic;
+
+    // load from file settings
+    private Enum.type firstType;
+    private Enum.type secondType;
+    private Color firstColor;
+    private Color secondColor;
+    private int boardSize;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.first = new Player(Enum.type.blackPlayer);
-        this.second = new Player(Enum.type.whitePlayer);
+        ArrayList<String> info = SettingsWindow.loadSettings();
+        this.firstColor = Color.valueOf(info.get(1));
+        this.secondColor = Color.valueOf(info.get(2));
+        if(info.get(0).compareTo("BlackPlayer") == 0) {
+            this.first = new Player(Enum.type.blackPlayer, firstColor);
+            this.second = new Player(Enum.type.whitePlayer, secondColor);
+            this.firstType = Enum.type.blackPlayer;
+            this.secondType = Enum.type.whitePlayer;
+        } else {
+            this.first = new Player(Enum.type.whitePlayer, secondColor);
+            this.second = new Player(Enum.type.blackPlayer, firstColor);
+            this.firstType = Enum.type.whitePlayer;
+            this.secondType = Enum.type.blackPlayer;
+        }
         this.current = first;
         this.other = second;
         this.playingPlayer.setText("First player");
         this.logic = new StandardGameLogic();
-        reversiBoard = new ReversiBoard(4, this.logic);
+        reversiBoard = new ReversiBoard(Integer.valueOf(info.get(3)), firstColor, secondColor);
         reversiBoard.setAlignment(Pos.CENTER);
         reversiBoard.setVisible(true);
         reversiBoard.setGridLinesVisible(true);
@@ -66,11 +80,13 @@ public class ReversiBoardController implements Initializable {
                     ArrayList<Point> availableMovesInner = this.logic.availableMoves(reversiBoard, this.current.getType());
                     if(availableMovesInner.size() != 0) {
                         if (this.logic.validOption(reversiBoard, temp.getRow() + 1, temp.getCol() + 1, availableMovesInner)) {
-                            this.logic.changeTiles(this.current.getType(), temp.getRow(), temp.getCol(), reversiBoard);
+                            this.logic.changeTiles(this.current, temp.getRow(), temp.getCol(), reversiBoard);
                             if (this.current.getType() == Enum.type.blackPlayer) {
-                                ((Circle) e.getSource()).setFill(Color.BLACK);
+//                                ((Circle) e.getSource()).setFill(Color.BLACK);
+                                ((Circle) e.getSource()).setFill(decidePlayerColor());
                             } else if (this.current.getType() == Enum.type.whitePlayer) {
-                                ((Circle) e.getSource()).setFill(Color.WHITE);
+//                                ((Circle) e.getSource()).setFill(Color.WHITE);
+                                ((Circle) e.getSource()).setFill(decidePlayerColor());
                             }
                             ((Circle) e.getSource()).setStroke(Color.BLACK);
                             if (temp.getType() == Enum.type.notDefined) {
@@ -128,6 +144,10 @@ public class ReversiBoardController implements Initializable {
             reversiBoard.draw();
         });
         reversiBoard.setDisable(true);
+    }
+
+    private Color decidePlayerColor() {
+        return current.getColor();
     }
 
     @FXML

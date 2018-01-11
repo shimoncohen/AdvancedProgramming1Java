@@ -39,14 +39,12 @@ public class ReversiPiece extends Circle {
 //        }
 //        this.setFill(Color.BLACK);
         this.setRadius(cellHeight / 2 - 4);
-        if(this.type == Enum.type.blackPlayer) {
-            this.setFill(Color.BLACK);
-            this.setStroke(Color.BLACK);
-        } else if(this.type == Enum.type.notDefined) {
+
+        if(this.type == Enum.type.notDefined) {
 //            this.setFill(Paint.valueOf("#f4f4f4"));
             this.setFill(Color.GREEN);
-        } else if(this.type == Enum.type.whitePlayer) {
-            this.setFill(Color.WHITE);
+        }
+        if(this.getType() != Enum.type.notDefined) {
             this.setStroke(Color.BLACK);
         }
 //        this.getChildren().add(this.circle);
@@ -63,6 +61,15 @@ public class ReversiPiece extends Circle {
     public Enum.type getType() {
         return type;
     }
+
+
+//    public Color getColor() {
+//        return color;
+//    }
+//
+//    public void setColor(Color color) {
+//        this.color = color;
+//    }
 
     public int getRow() {
         return row;
