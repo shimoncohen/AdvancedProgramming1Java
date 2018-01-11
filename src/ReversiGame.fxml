@@ -18,11 +18,11 @@
             <Label fx:id="playingPlayer">player</Label>
         </HBox>
         <HBox>
-            <Label>Black score:</Label>
+            <Label>First players score:</Label>
             <Label fx:id="blackScoreLabel">2</Label>
         </HBox>
         <HBox>
-            <Label>White score:</Label>
+            <Label>Second players score:</Label>
             <Label fx:id="whiteScoreLabel">2</Label>
         </HBox>
         <HBox prefHeight="100" alignment="CENTER">

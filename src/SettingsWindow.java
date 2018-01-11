@@ -129,13 +129,13 @@ public class SettingsWindow {
 
     public static ArrayList<String> loadSettings() {
         File file = new File(FILEPATH);
-        InputStream reader;
+        FileReader fileReader;
         if(file.exists()) {
-            reader = ClassLoader.getSystemClassLoader().getResourceAsStream(PARTIAL);
             String firstColor, secondColor, starter, line;
             BufferedReader bufferedReader = null;
             try {
-                bufferedReader = new BufferedReader(new InputStreamReader(reader));
+                fileReader = new FileReader(FILEPATH);
+                bufferedReader = new BufferedReader(fileReader);
                 // reading first player color
                 line = bufferedReader.readLine();
                 line = line.replace("first Player color: ", "");
