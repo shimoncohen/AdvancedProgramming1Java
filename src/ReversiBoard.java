@@ -6,13 +6,8 @@ import javafx.scene.paint.Paint;
 public class ReversiBoard extends GridPane {
     private ReversiPiece[][] board;
     private int size;
-    private Color firstColor;
-    private Color secondColor;
 
     public ReversiBoard(int size, Color firstColor, Color secondColor) {
-        this.firstColor = firstColor;
-        this.secondColor = secondColor;
-        this.setStyle("-fx-border: 2px; -fx-border-color: black");
         this.setGridLinesVisible(true);
         this.setId("reversiBoard");
         this.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());

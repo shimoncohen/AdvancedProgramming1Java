@@ -19,11 +19,11 @@ public class SettingsWindow {
 
     // defined const values
     private static final String FILEPATH = "src/settings.txt";
-    private static final String PARTIAL = "settings.txt";
     private static final int MINSIZE = 4;
     private static final int MAXSIZE = 20;
     private static final int SLIDERMAXWIDTH = 150;
     private static final double DEFAULTBOARDSIZE = 4;
+    private static final double BLOCKINCREMENT = 0;
 
     public void display() {
         final int WIDTH = 300;
@@ -36,9 +36,9 @@ public class SettingsWindow {
 
         // starting player options display options
         Label startingPlayer = new Label("Starting player:");
-        selectStartingPlayer.setValue("BlackPlayer");
-        selectStartingPlayer.getItems().add("BlackPlayer");
-        selectStartingPlayer.getItems().add("WhitePlayer");
+        this.selectStartingPlayer.setValue("BlackPlayer");
+        this.selectStartingPlayer.getItems().add("BlackPlayer");
+        this.selectStartingPlayer.getItems().add("WhitePlayer");
 
         // choose first players color display
         Label firstPlayerColor = new Label("First player color:");
@@ -52,6 +52,7 @@ public class SettingsWindow {
         boardSize.setMaxWidth(SLIDERMAXWIDTH);
         boardSize.setShowTickMarks(true);
         boardSize.setShowTickLabels(true);
+        boardSize.setBlockIncrement(BLOCKINCREMENT);
         for(int i = 1; i < 5; i++) {
             boardSize.adjustValue(MINSIZE + i * 2);
         }

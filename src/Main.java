@@ -8,13 +8,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    final int MINBUTTONSIZE = 100;
+    private final int MINBUTTONSIZE = 100;
 
-    Stage mainWindow;
-    Scene layoutDisplay;
-    Button startGameButton;
-    Button settingsButton;
-    Button closeButton;
+    private static Stage mainWindow;
+    private static Scene layoutDisplay;
+    private static Stage gameWindow;
+    private Button startGameButton;
+    private Button settingsButton;
+    private Button closeButton;
 
 
     public static void main(String[] args) {
@@ -23,25 +24,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        mainWindow = primaryStage;
-        mainWindow.setTitle("Reversi");
+        this.mainWindow = primaryStage;
+        this.mainWindow.setTitle("Reversi");
 
         VBox layoutMain = new VBox(20);
-        layoutDisplay = new Scene(layoutMain, 300, 300);
+        this.layoutDisplay = new Scene(layoutMain, 300, 300);
 
         // set height and width of window
-        mainWindow.setMinWidth(140);
-        mainWindow.setMinHeight(200);
+        this.mainWindow.setMinWidth(140);
+        this.mainWindow.setMinHeight(200);
 
         // define the main windows buttons
-        startGameButton = new Button("Start game!");
-        startGameButton.setOnAction(e -> {
+        this.startGameButton = new Button("Start game!");
+        this.startGameButton.setOnAction(e -> {
             try {
-                Stage gameWindow = new Stage();
+                this.gameWindow = new Stage();
                 HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-                Scene scene = new Scene(root, 500, 400);
+                Scene scene = new Scene(root, 550, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
-                gameWindow.setMinWidth(500);
+                // setting the game window
+                gameWindow.setMinWidth(550);
                 gameWindow.setMinHeight(400);
                 gameWindow.setTitle("Reversi");
                 gameWindow.setScene(scene);
@@ -51,23 +53,25 @@ public class Main extends Application {
                 e1.printStackTrace();
             }
         });
+        // setting the settings button
         SettingsWindow settingsWindow = new SettingsWindow();
-        startGameButton.setMinWidth(MINBUTTONSIZE);
-        settingsButton = new Button("Settings");
-        settingsButton.setOnAction(e -> settingsWindow.display());
-        settingsButton.setMinWidth(MINBUTTONSIZE);
-        closeButton = new Button("Close");
-        closeButton.setMinWidth(100);
-        closeButton.setOnMouseClicked(e -> {
-            mainWindow.close();
+        this.startGameButton.setMinWidth(MINBUTTONSIZE);
+        this.settingsButton = new Button("Settings");
+        this.settingsButton.setOnAction(e -> settingsWindow.display());
+        this.settingsButton.setMinWidth(MINBUTTONSIZE);
+        // setting the close button
+        this.closeButton = new Button("Close");
+        this.closeButton.setMinWidth(100);
+        this.closeButton.setOnMouseClicked(e -> {
+            this.mainWindow.close();
         });
 
         layoutMain.setAlignment(Pos.CENTER);
-        layoutMain.getChildren().addAll(startGameButton, settingsButton, closeButton);
+        layoutMain.getChildren().addAll(this.startGameButton, this.settingsButton, this.closeButton);
 
         // set all of the main windows properties
         primaryStage.setTitle("Reversi");
-        primaryStage.setScene(layoutDisplay);
+        primaryStage.setScene(this.layoutDisplay);
 //        primaryStage.setResizable(true);
         // if window is resizeable
 //        if(primaryStage.isResizable()) {
@@ -80,5 +84,11 @@ public class Main extends Application {
 
         // show window
         primaryStage.show();
+    }
+
+    public static void switchBackToMain() {
+        gameWindow.close();
+        mainWindow.setScene(layoutDisplay);
+        mainWindow.show();
     }
 }

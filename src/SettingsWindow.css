@@ -28,7 +28,7 @@
 }
 
 #info {
-    -fx-min-width: 140px;
+    -fx-min-width: 160px;
     -fx-spacing: 10px;
     -fx-alignment: center;
 }

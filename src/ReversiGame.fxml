@@ -9,8 +9,8 @@
       prefHeight="400.0" prefWidth="600.0"
       fx:id="root">
     <VBox fx:id="info">
-        <Button minWidth="110" fx:id="start" onMouseClicked="#startGame">Strart Game</Button>
-        <Button minWidth="110" onMouseClicked="#endGame">End Game</Button>
+        <Button fx:id="start" minWidth="110" onMouseClicked="#startGame">Strart Game</Button>
+        <Button fx:id="end" minWidth="110" onMouseClicked="#endGame">End Game</Button>
         <HBox>
             <Label>Current player:</Label>
         </HBox>
@@ -25,9 +25,9 @@
             <Label>Second players score:</Label>
             <Label fx:id="whiteScoreLabel">2</Label>
         </HBox>
-        <HBox prefHeight="100" alignment="CENTER">
+        <VBox prefHeight="100" spacing="10" alignment="CENTER">
             <Label fx:id="winnerLabel" visible="false">win!</Label>
-        </HBox>
-        <!--<Button minWidth="110">Close</Button>-->
+            <Button fx:id="closeButton" onMouseClicked="#closeGameWindow" visible="false" minWidth="80">Close</Button>
+        </VBox>
     </VBox>
 </HBox>
