@@ -36,9 +36,10 @@ public class SettingsWindow {
 
         // starting player options display options
         Label startingPlayer = new Label("Starting player:");
-        this.selectStartingPlayer.setValue("BlackPlayer");
-        this.selectStartingPlayer.getItems().add("BlackPlayer");
-        this.selectStartingPlayer.getItems().add("WhitePlayer");
+        selectStartingPlayer.setValue("BlackPlayer");
+        selectStartingPlayer.getItems().clear();
+        selectStartingPlayer.getItems().add("BlackPlayer");
+        selectStartingPlayer.getItems().add("WhitePlayer");
 
         // choose first players color display
         Label firstPlayerColor = new Label("First player color:");
