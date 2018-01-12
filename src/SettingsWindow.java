@@ -23,6 +23,11 @@ public class SettingsWindow {
     private static final double DEFAULTBOARDSIZE = 4;
     private static final double BLOCKINCREMENT = 0;
 
+    // defaults in case settings file dosent exist yet
+    private static final String FIRSTPLAYER = "BlackPlayer";
+    private static final String FIRSTPLAYERCOLOR = "#000000";
+    private static final String SECONDPLAYERCOLOR = "#ffffff";
+
     public void display() {
         final int WIDTH = 300;
         final int HEIGHT = 400;
@@ -130,6 +135,7 @@ public class SettingsWindow {
     public static ArrayList<String> loadSettings() {
         File file = new File(FILEPATH);
         FileReader fileReader;
+        ArrayList<String> info = new ArrayList<>();
         if(file.exists()) {
             String firstColor, secondColor, starter, line;
             BufferedReader bufferedReader = null;
@@ -166,6 +172,10 @@ public class SettingsWindow {
                     System.out.println("Error closing the file");
                 }
             }
+            info.add(selectStartingPlayer.getValue());
+            info.add(firstColorPicker.getValue().toString());
+            info.add(secondColorPicker.getValue().toString());
+            info.add(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
             // if the file is empty
         } else {
             try {
@@ -173,12 +183,11 @@ public class SettingsWindow {
             } catch (IOException e) {
                 System.out.println("Error creating the file");
             }
+            info.add(FIRSTPLAYER);
+            info.add(FIRSTPLAYERCOLOR);
+            info.add(SECONDPLAYERCOLOR);
+            info.add(String.valueOf(DEFAULTBOARDSIZE));
         }
-        ArrayList<String> info = new ArrayList<>();
-        info.add(selectStartingPlayer.getValue());
-        info.add(firstColorPicker.getValue().toString());
-        info.add(secondColorPicker.getValue().toString());
-        info.add(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
         return info;
     }
 }
