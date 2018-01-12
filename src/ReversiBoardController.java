@@ -143,9 +143,9 @@ public class ReversiBoardController implements Initializable {
         this.reversiBoard.setDisable(true);
         this.winnerLabel.setVisible(true);
         if(Integer.valueOf(this.whiteScoreLabel.getText()) > Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("White player Wins!");
+            this.winnerLabel.setText("Second player Wins!");
         } else if(Integer.valueOf(this.whiteScoreLabel.getText()) < Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("Black player Wins!");
+            this.winnerLabel.setText("First player Wins!");
         } else {
             this.winnerLabel.setText("Its a tie!");
         }
