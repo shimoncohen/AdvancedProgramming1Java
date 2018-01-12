@@ -22,8 +22,6 @@
     -fx-vertical-grid-lines-visible: true;
     -fx-horizontal-grid-lines-visible: true;
     -fx-grid-lines-visible: true;
-    /*-fx-background-image: url("Game-Board.gif");*/
-    /*javafx.scene.image.ImageView img = new javafx.scene.image.ImageView("Game-Board.gif");*/
     /*img.fitWidthProperty().bind(this.widthProperty());*/
 }
 

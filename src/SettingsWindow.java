@@ -5,8 +5,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.scene.control.*;
-
-import javax.swing.text.html.ImageView;
 import java.io.*;
 import java.util.ArrayList;
 
