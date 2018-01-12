@@ -186,7 +186,7 @@ public class SettingsWindow {
             info.add(FIRSTPLAYER);
             info.add(FIRSTPLAYERCOLOR);
             info.add(SECONDPLAYERCOLOR);
-            info.add(String.valueOf(Math.floor(DEFAULTBOARDSIZE)));
+            info.add(String.valueOf((int)Math.floor(DEFAULTBOARDSIZE)));
         }
         return info;
     }
