@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,6 +32,8 @@ public class ReversiBoardController implements Initializable {
     // load from file settings
     private Color firstColor;
     private Color secondColor;
+
+    private final int PREFSIZECHANGE = 120;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,12 +64,12 @@ public class ReversiBoardController implements Initializable {
         ReversiPiece[][] tempBoard = this.reversiBoard.getBoard();
         for(int i = 0; i < tempBoard.length; i++) {
             for (int j = 0; j < tempBoard[i].length; j++) {
-                reversiBoard.getBoard()[i][j].onMouseClickedProperty().setValue(e -> {
+                this.reversiBoard.getBoard()[i][j].onMouseClickedProperty().setValue(e -> {
                     ReversiPiece temp = (ReversiPiece) e.getSource();
                     ArrayList<Point> availableMovesInner = this.logic.availableMoves(
                             this.reversiBoard, this.current.getType());
                     if(availableMovesInner.size() != 0) {
-                        if (this.logic.validOption(reversiBoard, temp.getRow() + 1,
+                        if (this.logic.validOption(this.reversiBoard, temp.getRow() + 1,
                                 temp.getCol() + 1, availableMovesInner)) {
                             this.logic.changeTiles(this.current, temp.getRow(), temp.getCol(), this.reversiBoard);
                             if (this.current.getType() == Enum.type.blackPlayer) {
@@ -114,7 +115,7 @@ public class ReversiBoardController implements Initializable {
         }
         this.root.getChildren().add(0, this.reversiBoard);
         this.root.widthProperty().addListener((observable, oldVal, newVal) -> {
-            double boardNewWidth = newVal.doubleValue() - 120;
+            double boardNewWidth = newVal.doubleValue() - PREFSIZECHANGE;
             this.reversiBoard.setPrefWidth(boardNewWidth);
             this.reversiBoard.draw();
         });

@@ -24,21 +24,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.mainWindow = primaryStage;
-        this.mainWindow.setTitle("Reversi");
+        mainWindow = primaryStage;
+        mainWindow.setTitle("Reversi");
 
         VBox layoutMain = new VBox(20);
-        this.layoutDisplay = new Scene(layoutMain, 300, 300);
+        layoutDisplay = new Scene(layoutMain, 300, 300);
 
         // set height and width of window
-        this.mainWindow.setMinWidth(140);
-        this.mainWindow.setMinHeight(200);
+        mainWindow.setMinWidth(140);
+        mainWindow.setMinHeight(200);
 
         // define the main windows buttons
         this.startGameButton = new Button("Start game!");
         this.startGameButton.setOnAction(e -> {
             try {
-                this.gameWindow = new Stage();
+                gameWindow = new Stage();
                 HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
                 Scene scene = new Scene(root, 550, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
@@ -63,7 +63,7 @@ public class Main extends Application {
         this.closeButton = new Button("Close");
         this.closeButton.setMinWidth(100);
         this.closeButton.setOnMouseClicked(e -> {
-            this.mainWindow.close();
+            mainWindow.close();
         });
 
         layoutMain.setAlignment(Pos.CENTER);
@@ -71,14 +71,7 @@ public class Main extends Application {
 
         // set all of the main windows properties
         primaryStage.setTitle("Reversi");
-        primaryStage.setScene(this.layoutDisplay);
-//        primaryStage.setResizable(true);
-        // if window is resizeable
-//        if(primaryStage.isResizable()) {
-//            // set min width and height to 300
-//            primaryStage.setMinHeight(300);
-//            primaryStage.setMinWidth(300);
-//        }
+        primaryStage.setScene(layoutDisplay);
         // set window to center of screen
         primaryStage.centerOnScreen();
 
