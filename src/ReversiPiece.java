@@ -1,11 +1,15 @@
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 public class ReversiPiece extends Circle {
     private Enum.type type;
     private GridPane grid;
+    private StackPane stackPane;
+    private Rectangle rectangle;
     private int row;
     private int col;
 
@@ -15,20 +19,27 @@ public class ReversiPiece extends Circle {
         this.col = col;
         this.setFill(Paint.valueOf("#f4f4f4"));
         this.type = Enum.type.notDefined;
+        this.stackPane = new StackPane();
+        this.rectangle = new Rectangle();
+        this.rectangle.setStroke(Color.BLACK);
+        this.rectangle.setFill(Color.GREEN);
+        this.setFill(Color.GREEN);
     }
 
     public void draw(int cellWidth, int cellHeight) {
-        this.setRadius(cellHeight / 2 - 4);
+        int minVal = Math.min(cellHeight, cellWidth);
+        this.setRadius(minVal / 2 - 9);
+        this.rectangle.setWidth(cellWidth - 17);
+        this.rectangle.setHeight(cellHeight - 15);
 
-        if(this.type == Enum.type.notDefined) {
-            this.setFill(Color.GREEN);
-        }
         if(this.getType() != Enum.type.notDefined) {
             this.setStroke(Color.BLACK);
         }
-        this.grid.add(this, col, row);
-        this.grid.getChildren().remove(this);
-        this.grid.add(this, col, row);
+        this.stackPane.getChildren().removeAll(this.rectangle, this);
+        this.stackPane.getChildren().addAll(this.rectangle, this);
+        this.grid.getChildren().remove(this.stackPane);
+        this.grid.add(this.stackPane, col, row);
+//        this.grid.add(this, col, row);
     }
 
     public void setType(Enum.type type) {
