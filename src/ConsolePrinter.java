@@ -62,57 +62,6 @@ public class ConsolePrinter implements Printer{
         System.out.println(point[0] + " " + point[1]);
     }
 
-    public void printBoard(Board board) {
-        System.out.println("Current board:");
-        // print the board to the stream with all
-        // of the line and column numbers and dividers between cells.
-        if(board.getSize() > 9) {
-            System.out.print("  ");
-        } else {
-            System.out.print(" ");
-        }
-        for(int i = 1; i <= board.getSize(); i++) {
-            System.out.print("| " + i + " ");
-        }
-        System.out.println("|");
-        System.out.print("--");
-        for(int k = 0; k < board.getSize(); k++) {
-            if(k > 8) {
-                System.out.print("-----");
-                continue;
-            }
-            System.out.print("----");
-        }
-        System.out.println();
-        for(int i = 0; i < board.getSize(); i++) {
-            System.out.print(i + 1);
-            if(board.getSize() > 9 && i < 9) {
-                System.out.print(" ");
-            }
-            System.out.print("| ");
-            for(int k = 0; k < board.getSize(); k++) {
-                System.out.print(board.checkCell(i, k));
-                if(k > 7) {
-                    System.out.print(" |  ");
-                } else {
-                    System.out.print(" | ");
-                }
-                if(k == board.getSize() - 1) {
-                    System.out.println();
-                }
-            }
-            System.out.print("--");
-            for(int k = 0; k < board.getSize(); k++) {
-                if(k > 8) {
-                    System.out.print("-----");
-                    continue;
-                }
-                System.out.print("----");
-            }
-            System.out.println();
-        }
-    }
-
     public void printInvalidMove() {
         System.out.println("invalid move!");
     }

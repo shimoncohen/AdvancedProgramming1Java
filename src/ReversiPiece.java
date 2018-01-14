@@ -27,7 +27,6 @@ public class ReversiPiece extends Circle {
      * @param col the column of the piece on the board.
      */
     public ReversiPiece(GridPane grid, int row, int col) {
-        // TODO is grid really necessary?
         this.grid = grid;
         // initialize the peice location.
         this.row = row;
@@ -63,7 +62,6 @@ public class ReversiPiece extends Circle {
         this.stackPane.getChildren().addAll(this.rectangle, this);
         this.grid.getChildren().remove(this.stackPane);
         this.grid.add(this.stackPane, col, row);
-//        this.grid.add(this, col, row);
     }
 
     /**

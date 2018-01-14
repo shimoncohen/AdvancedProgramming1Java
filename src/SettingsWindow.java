@@ -1,3 +1,6 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;

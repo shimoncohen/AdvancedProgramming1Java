@@ -3,6 +3,9 @@
 
 import java.util.ArrayList;
 
+/**
+ * the class of the standard game logic.
+ */
 public class StandardGameLogic implements GameLogic {
     public ArrayList<Point> availableMoves(ReversiBoard board, Enum.type type1) {
         char a, o;
@@ -100,10 +103,6 @@ public class StandardGameLogic implements GameLogic {
     }
 
     public boolean isGameWon(ReversiBoard board) {
-//        if(availableMoves(board, Enum.type.whitePlayer).size() == 0
-//                && availableMoves(board, Enum.type.blackPlayer).size() == 0) {
-//            return true;
-//        }
         //check if board is full.
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {

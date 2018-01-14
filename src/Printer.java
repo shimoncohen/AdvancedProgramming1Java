@@ -75,13 +75,6 @@ public interface Printer {
      */
     void printPoint(int point[]);
     /*
-     * function name: printBoard.
-     * input: the board to print.
-     * output: none.
-     * operation: prints a given board.
-     */
-    void printBoard(Board board);
-    /*
      * function name: printMove.
      * input: the player who made the move and the x and y values of the move.
      * output: none.
