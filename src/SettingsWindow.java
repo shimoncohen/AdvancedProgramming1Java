@@ -22,6 +22,7 @@ public class SettingsWindow {
     private static ColorPicker firstColorPicker = new ColorPicker();
     private static ColorPicker secondColorPicker = new ColorPicker();
     private static Slider boardSize = new Slider();
+    private Label boardSizeLabel = new Label();
 
     private static final String FILEPATH = "src/settings.txt";
     private static final int MINSIZE = 4;
@@ -63,7 +64,7 @@ public class SettingsWindow {
         // choose second players color display
         Label secondPlayerColor = new Label("Second player color:");
 
-        Label boardSizeLabel = new Label("Board size:");
+        Label sizeLabel = new Label("Board size:");
         // set min and max size of board size.
         boardSize.setMin(MINSIZE);
         boardSize.setMax(MAXSIZE);
@@ -74,10 +75,14 @@ public class SettingsWindow {
         for(int i = 1; i < 5; i++) {
             boardSize.adjustValue(MINSIZE + i * 2);
         }
+        // display chosen size when slider is dragged
+        boardSize.setOnMouseDragged(e -> {
+            this.boardSizeLabel.setText(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
+        });
         // positioning the slider.
         HBox slideLayout = new HBox(10);
         slideLayout.setAlignment(Pos.CENTER);
-        slideLayout.getChildren().addAll(boardSizeLabel, boardSize);
+        slideLayout.getChildren().addAll(sizeLabel, boardSize, boardSizeLabel);
 
         // initialize the color pickers to default.
         firstColorPicker.setValue(Color.BLACK);

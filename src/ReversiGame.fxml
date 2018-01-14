@@ -35,6 +35,7 @@
         </VBox>
         <VBox prefHeight="100" spacing="10" alignment="CENTER">
             <Label fx:id="winnerLabel" visible="false">win!</Label>
+            <Label fx:id="winnerLabel2" visible="false"></Label>
             <Button fx:id="closeButton" onMouseClicked="#closeGameWindow" visible="false" minWidth="80">Close</Button>
         </VBox>
     </VBox>

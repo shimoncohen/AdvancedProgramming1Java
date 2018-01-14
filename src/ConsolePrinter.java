@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /***
  * A printer when using console.
  */
-public class ConsolePrinter implements Printer{
+public class ConsolePrinter implements Printer {
     public void printGameOpenning() {
         System.out.println("Welcome to Reversi!" + "Choose an opponent type:");
         System.out.println("1. a human local player" + "\n" + "2. an AI player" + "\n" + "3. a remote player");

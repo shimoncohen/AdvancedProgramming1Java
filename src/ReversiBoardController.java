@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -27,6 +26,7 @@ public class ReversiBoardController implements Initializable {
     public Button start;
     public Button end;
     public Label winnerLabel;
+    public Label winnerLabel2;
     public Label playingPlayer;
     public Button closeButton;
     public Label firstStartLabel;
@@ -201,10 +201,13 @@ public class ReversiBoardController implements Initializable {
         this.closeButton.setVisible(true);
         this.reversiBoard.setDisable(true);
         this.winnerLabel.setVisible(true);
+        this.winnerLabel2.setVisible(true);
         if(Integer.valueOf(this.whiteScoreLabel.getText()) > Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("Second player Wins!");
+            this.winnerLabel.setText("Second player");
+            this.winnerLabel2.setText("Wins!");
         } else if(Integer.valueOf(this.whiteScoreLabel.getText()) < Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("First player Wins!");
+            this.winnerLabel.setText("First player");
+            this.winnerLabel2.setText("Wins!");
         } else {
             this.winnerLabel.setText("Its a tie!");
         }
