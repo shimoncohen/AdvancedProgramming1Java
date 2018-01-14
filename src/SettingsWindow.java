@@ -15,7 +15,6 @@ public class SettingsWindow {
     private static ColorPicker secondColorPicker = new ColorPicker();
     private static Slider boardSize = new Slider();
 
-    // defined const values
     private static final String FILEPATH = "src/settings.txt";
     private static final int MINSIZE = 4;
     private static final int MAXSIZE = 20;

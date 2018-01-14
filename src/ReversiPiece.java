@@ -28,9 +28,9 @@ public class ReversiPiece extends Circle {
 
     public void draw(int cellWidth, int cellHeight) {
         int minVal = Math.min(cellHeight, cellWidth);
-        this.setRadius(minVal / 2 - 9);
-        this.rectangle.setWidth(cellWidth - 17);
-        this.rectangle.setHeight(cellHeight - 15);
+        this.setRadius(minVal / 2 - 2);
+        this.rectangle.setWidth(cellWidth - 1);
+        this.rectangle.setHeight(cellHeight - 1);
 
         if(this.getType() != Enum.type.notDefined) {
             this.setStroke(Color.BLACK);

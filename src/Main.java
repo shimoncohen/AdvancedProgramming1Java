@@ -40,10 +40,10 @@ public class Main extends Application {
             try {
                 gameWindow = new Stage();
                 HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
-                Scene scene = new Scene(root, 550, 400);
+                Scene scene = new Scene(root, 500, 400);
                 scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
                 // setting the game window
-                gameWindow.setMinWidth(550);
+                gameWindow.setMinWidth(500);
                 gameWindow.setMinHeight(400);
                 gameWindow.setTitle("Reversi");
                 gameWindow.setScene(scene);
