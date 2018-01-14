@@ -92,14 +92,16 @@ public class ReversiBoardController implements Initializable {
                     }
                     availableMovesInner = this.logic.availableMoves(this.reversiBoard, this.current.getType());
                     if(availableMovesInner.size() == 0) {
-                        if(this.current.getType() == Enum.type.blackPlayer) {
-                            availableMovesInner = this.logic.availableMoves(this.reversiBoard,
-                                    Enum.type.whitePlayer);
+                        if (this.playingPlayer.getText().compareTo("First player") == 0) {
+                            this.playingPlayer.setText("Second player");
                             this.current = this.second;
-                        } else if(this.current.getType() == Enum.type.whitePlayer) {
-                            availableMovesInner = this.logic.availableMoves(this.reversiBoard,
-                                    Enum.type.blackPlayer);
+                            availableMovesInner = this.logic.availableMoves(
+                                    this.reversiBoard, this.current.getType());
+                        } else if (playingPlayer.getText().compareTo("Second player") == 0) {
+                            this.playingPlayer.setText("First player");
                             this.current = this.first;
+                            availableMovesInner = this.logic.availableMoves(
+                                    this.reversiBoard, this.current.getType());
                         }
                         if(availableMovesInner.size() == 0) {
                             endGame();
