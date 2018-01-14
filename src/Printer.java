@@ -1,3 +1,6 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import java.util.ArrayList;
 
 public interface Printer {
@@ -24,7 +27,7 @@ public interface Printer {
     void waitingForConnectionMessage();
     /*
      * function name: failedConnectingToServer.
-     * input: none.
+     * input: Exception message.
      * output: none.
      * operation: prints a message that client failed to connected to the server.
      */
@@ -94,9 +97,9 @@ public interface Printer {
     void printInvalidMove();
     /*
      * function name: printPossibleMoves.
-     * input: a vector of the players possible moves.
+     * input: a list of the players possible moves as points.
      * output: none.
-     * operation: prints all of the points in the vector.
+     * operation: prints all of the points in the list.
      */
     void printPossibleMoves(ArrayList<Point> possibleMoves);
     /*
@@ -129,7 +132,7 @@ public interface Printer {
     void printClientMenu();
     /*
      * function name: gameDeniedMessage.
-     * input: none.
+     * input: String message.
      * output: none.
      * operation: prints the message sent from the server.
      */
@@ -138,12 +141,12 @@ public interface Printer {
      * function name: gameNotOption.
      * input: none.
      * output: none.
-     * operation: prints a message indicating that the game mode chosen isnt an option.
+     * operation: prints a message indicating that the game mode chosen isn't an option.
      */
     void gameNotOption();
     /*
      * function name: printGamesList.
-     * input: the size of the game list and the list itself to print.
+     * input: the size of the game list and the list itself to print (as a string).
      * output: none.
      * operation: prints the list of available games sent from the server.
      *            if the list is empty then print an appropriate message.

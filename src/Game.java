@@ -1,4 +1,6 @@
-public class Game {
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+ public class Game {
     private GameLogic gameLogic;
     private ReversiBoard board;
     private Player firstPlayer;

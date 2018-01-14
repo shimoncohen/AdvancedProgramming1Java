@@ -1,5 +1,11 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import java.util.ArrayList;
 
+/***
+ * A printer when using console.
+ */
 public class ConsolePrinter implements Printer{
     public void printGameOpenning() {
         System.out.println("Welcome to Reversi!" + "Choose an opponent type:");

@@ -1,3 +1,6 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -14,6 +17,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Organizes all the controllers in the board.
+ */
 public class ReversiBoardController implements Initializable {
     // all objects used in game window
     public Label whiteScoreLabel;
@@ -43,11 +49,18 @@ public class ReversiBoardController implements Initializable {
     // defaults
     private final int PREFSIZECHANGE = 120;
 
+    /**
+     *  initializing the default values of the controller.
+     * @param location the url.
+     * @param resources the rescourses.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> info = SettingsWindow.loadSettings();
+        // initializing the first player and second player color.
         this.firstColor = Color.valueOf(info.get(1));
         this.secondColor = Color.valueOf(info.get(2));
+        // initializing the starter player.
         if(info.get(0).compareTo("BlackPlayer") == 0) {
             this.first = new Player(Enum.type.blackPlayer, this.firstColor);
             this.second = new Player(Enum.type.whitePlayer, this.secondColor);
@@ -57,8 +70,10 @@ public class ReversiBoardController implements Initializable {
         }
         this.current = first;
         this.logic = new StandardGameLogic();
+        // initializing the board.
         this.reversiBoard = new ReversiBoard(Integer.valueOf(info.get(3)), this.firstColor, this.secondColor);
         this.reversiBoard.onMouseClickedProperty().setValue(e -> {
+            // initializing the counting of players' scores.
             this.first.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.blackPlayer));
             this.second.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.whitePlayer));
             this.blackScoreLabel.setText(this.first.getScore().toString());
@@ -80,6 +95,7 @@ public class ReversiBoardController implements Initializable {
                     if(availableMovesInner.size() != 0) {
                         if (this.logic.validOption(this.reversiBoard, temp.getRow() + 1,
                                 temp.getCol() + 1, availableMovesInner)) {
+                            // changing the tiles after the click.
                             this.logic.changeTiles(this.current, temp.getRow(), temp.getCol(), this.reversiBoard);
                             if (this.current.getType() == Enum.type.blackPlayer) {
                                 ((Circle) e.getSource()).setFill(decidePlayerColor());
@@ -106,6 +122,12 @@ public class ReversiBoardController implements Initializable {
         this.reversiBoard.setDisable(true);
     }
 
+    /*
+     * function name: swapTrun.
+     * input: none.
+     * output: none.
+     * operation: switches the turns between the players.
+     */
     private void swapTurn() {
         if (this.playingPlayer.getText().compareTo("First player") == 0) {
             this.playingPlayer.setText("Second player");
@@ -116,6 +138,14 @@ public class ReversiBoardController implements Initializable {
         }
     }
 
+    /*
+     * function name: checkForNoMoves.
+     * input: none.
+     * output: none.
+     * operation: checks if there are any available moves for the current player.
+     * if there are no possible moves, a message is shown.
+     * if both players have no possible moves, the game ends.
+     */
     private void checkForNoMoves() {
         // if the current player has no moves
         ArrayList<Point> availableMoves = this.logic.availableMoves(this.reversiBoard, this.current.getType());
@@ -134,10 +164,22 @@ public class ReversiBoardController implements Initializable {
         }
     }
 
+    /*
+     * function name: decidePlayerColor.
+     * input: none.
+     * output: the color of the current player.
+     * operation: returns the color of the current player.
+     */
     private Color decidePlayerColor() {
         return this.current.getColor();
     }
 
+    /*
+     * function name: startGame.
+     * input: none.
+     * output: none.
+     * operation: starts the game operation.
+     */
     @FXML
     public void startGame() {
         this.firstStartLabel.setVisible(false);
@@ -146,6 +188,12 @@ public class ReversiBoardController implements Initializable {
         showAvailableMoves();
     }
 
+    /*
+     * function name: endGame.
+     * input: none.
+     * output: none.
+     * operation: disables all moves, shows a winning message and shows a close button.
+     */
     @FXML
     public void endGame() {
         this.start.setDisable(true);
@@ -162,10 +210,21 @@ public class ReversiBoardController implements Initializable {
         }
     }
 
+    /**
+     * setting the action of close window to be switching back to menu.
+     * @param mouseEvent clicking the mouse.
+     */
     public void closeGameWindow(MouseEvent mouseEvent) {
         Main.switchBackToMain();
     }
 
+    /*
+     * function name: resizeWindowEvents.
+     * input: none.
+     * output: none.
+     * operation: reassures that the window resize doesn't go over the limited borders of
+     * min and max window size.
+     */
     private void resizeWindowEvents() {
         this.root.getChildren().add(0, this.reversiBoard);
         this.root.widthProperty().addListener((observable, oldVal, newVal) -> {
@@ -179,6 +238,12 @@ public class ReversiBoardController implements Initializable {
         });
     }
 
+    /*
+     * function name: resetPiecesStroke.
+     * input: none.
+     * output: none.
+     * operation: .
+     */
     private void resetPiecesStroke() {
         for (int i = 0; i < this.reversiBoard.getBoard().length; i++) {
             for (int j = 0; j < this.reversiBoard.getBoard()[i].length; j++) {
@@ -191,12 +256,20 @@ public class ReversiBoardController implements Initializable {
         }
     }
 
+    /*
+     * function name: showAvailableMoves.
+     * input: none.
+     * output: none.
+     * operation: show the possible moves of the current player. Represented as yellow circles.
+     */
     private void showAvailableMoves() {
         resetPiecesStroke();
+        // getting a list of the possible moves.
         ArrayList<Point> options = this.logic.availableMoves(this.reversiBoard, current.getType());
         for(int i = 0; i < this.reversiBoard.getBoard().length; i++) {
             for (int j = 0; j < this.reversiBoard.getBoard()[i].length; j++) {
                 for (int k = 0; k < options.size(); k++) {
+                    // shows the possible move as a yellow circle.
                     if (options.get(k).getX() - 1 == i && options.get(k).getY() - 1 == j) {
                         this.reversiBoard.getBoard()[i][j].setStroke(Color.YELLOW);
                     }
@@ -205,10 +278,18 @@ public class ReversiBoardController implements Initializable {
         }
     }
 
+    /*
+     * function name: noMovesPrompt.
+     * input: none.
+     * output: none.
+     * operation: shows a window with no move message.
+     */
     private void noMovesPrompt() {
+        // setting a new window.
         Stage noMovesWindow = new Stage();
         noMovesWindow.setTitle("No moves!");
         noMovesWindow.centerOnScreen();
+        // set the label message.
         Label noMovesLabel = new Label("No moves!\n turn goes to other player.");
         noMovesLabel.setId("noMove");
         VBox box = new VBox();

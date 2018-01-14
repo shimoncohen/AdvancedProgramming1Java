@@ -8,6 +8,11 @@ import javafx.scene.control.*;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * determine the settings of the game.
+ * responsible of board size, players' color and starting player.
+ * reads the settings from file.
+ */
 public class SettingsWindow {
 
     private static ComboBox<String> selectStartingPlayer = new ComboBox<>();
@@ -27,6 +32,12 @@ public class SettingsWindow {
     private static final String FIRSTPLAYERCOLOR = "#000000";
     private static final String SECONDPLAYERCOLOR = "#ffffff";
 
+    /*
+     * function name: display.
+     * input: none.
+     * output: none.
+     * operation: sets the display of the settings window.
+     */
     public void display() {
         final int WIDTH = 300;
         final int HEIGHT = 400;
@@ -50,6 +61,7 @@ public class SettingsWindow {
         Label secondPlayerColor = new Label("Second player color:");
 
         Label boardSizeLabel = new Label("Board size:");
+        // set min and max size of board size.
         boardSize.setMin(MINSIZE);
         boardSize.setMax(MAXSIZE);
         boardSize.setMaxWidth(SLIDERMAXWIDTH);
@@ -59,20 +71,24 @@ public class SettingsWindow {
         for(int i = 1; i < 5; i++) {
             boardSize.adjustValue(MINSIZE + i * 2);
         }
+        // positioning the slider.
         HBox slideLayout = new HBox(10);
         slideLayout.setAlignment(Pos.CENTER);
         slideLayout.getChildren().addAll(boardSizeLabel, boardSize);
 
+        // initialize the color pickers to default.
         firstColorPicker.setValue(Color.BLACK);
         secondColorPicker.setValue(Color.WHITE);
 
+        // read settings from the settings file.
         loadSettings();
 
-        // setting the button that closes the window
+        // setting the button that closes the window.
         Button closeAndsave = new Button("Close & save");
+        // set action to the "save & close" button.
         closeAndsave.setOnAction(e -> {
-
             try {
+                // write the current settings into the settings file.
                 writeSettings(boardSize.getValue(), firstColorPicker.getValue().toString(),
                         secondColorPicker.getValue().toString(), selectStartingPlayer.getValue());
             } catch (IOException exc) {
@@ -81,13 +97,14 @@ public class SettingsWindow {
             window.close();
         });
 
-        // setting the button that closes the window
+        // setting the button that closes the window.
         Button closeNoSave = new Button("Close w/o saving");
+        // set action to "close w/o save" button.
         closeNoSave.setOnAction(e -> {
             window.close();
         });
 
-        // setting the layout of the window
+        // setting the layout of the window.
         VBox layout = new VBox(15);
         Scene scene = new Scene(layout, WIDTH, HEIGHT);
         window.setScene(scene);
@@ -109,8 +126,17 @@ public class SettingsWindow {
         window.showAndWait();
     }
 
+    /**
+     * writing the current settings into the settings file.
+     * @param size the size of the new board according to the slider.
+     * @param firstColor the color of the first player.
+     * @param secondColor the color of the second player.
+     * @param starter the starting player.
+     * @throws IOException throws an error in case of not able writing into the file.
+     */
     private static void writeSettings(Double size, String firstColor,
                                String secondColor, String starter) throws IOException {
+        // opening the file.
         File file = new File(FILEPATH);
         BufferedWriter bufferedWriter = null;
         try {
@@ -131,7 +157,12 @@ public class SettingsWindow {
         }
     }
 
+    /**
+     * loads the settings from the file into the game.
+     * @return a list of strings that represents the settings from the file.
+     */
     public static ArrayList<String> loadSettings() {
+        // opening the file.
         File file = new File(FILEPATH);
         FileReader fileReader;
         ArrayList<String> info = new ArrayList<>();

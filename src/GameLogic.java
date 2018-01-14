@@ -1,3 +1,6 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import java.util.ArrayList;
 
 public interface GameLogic {
@@ -20,13 +23,13 @@ public interface GameLogic {
     /*
      * function name: availableMoves.
      * input: type- the player type(black/white). board- the game board player - the player.
-     * output: a vector of points indicating the available moves.
+     * output: a list of points indicating the available moves.
      * operation: searches the board for available moves for the current player.
      */
     ArrayList<Point> availableMoves(ReversiBoard board, Enum.type type1);
     /*
      * function name: validOption.
-     * input: the players move.
+     * input: the players move, the game board and the type of the player.
      * output: true if optional move, false otherwise.
      * operation: checks if the move is an optional move and returns true if it is, false otherwise.
      */
@@ -40,21 +43,21 @@ public interface GameLogic {
     void changeTiles(Player player, int x, int y, ReversiBoard board);
     /*
      * function name: gameWon.
-     * input: none.
+     * input: the game board.
      * output: the playerType of the player who won, otherwise t for tie.
      * operation: returns the winning player's type, otherwise returns t for tie.
      */
     char gameWon(ReversiBoard board) ;
     /*
      * function name: isGameWon.
-     * input: none.
+     * input: the game board.
      * output: true if board is full, false otherwise.
      * operation: returns true if board is full, false otherwise.
      */
     boolean isGameWon(ReversiBoard board);
     /*
      * function name: gameFinalMove.
-     * input: the game board and the last move.
+     * input: the game board, the type of the player and the last move.
      * output: true if the game ends after given move, false otherwise.
      * operation: plays given move on board and returns true if the given move was the final move, false otherwise.
      */

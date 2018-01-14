@@ -1,3 +1,6 @@
+// 315383133 shimon cohen
+// 302228275 Nadav Spitzer
+
 import java.util.ArrayList;
 
 public class StandardGameLogic implements GameLogic {
