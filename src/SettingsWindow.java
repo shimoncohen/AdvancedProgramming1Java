@@ -1,6 +1,5 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
-package Controllers;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

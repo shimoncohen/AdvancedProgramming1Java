@@ -1,9 +1,6 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
 
-import General.*;
-import General.Enum;
-import Interfaces.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -57,7 +54,7 @@ public class ReversiBoardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.endBool = false;
-        ArrayList<String> info = Controllers.SettingsWindow.loadSettings();
+        ArrayList<String> info = SettingsWindow.loadSettings();
         // initializing the first player and second player color.
         this.firstColor = Color.valueOf(info.get(1));
         this.secondColor = Color.valueOf(info.get(2));
