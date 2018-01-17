@@ -1,6 +1,5 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
-package Controllers;
 
 import General.*;
 import General.Enum;
@@ -41,6 +40,7 @@ public class ReversiBoardController implements Initializable {
     private Player second;
     private Player current;
     private GameLogic logic;
+    private boolean endBool;
 
     // load from file settings
     private Color firstColor;
@@ -56,7 +56,8 @@ public class ReversiBoardController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<String> info = SettingsWindow.loadSettings();
+        this.endBool = false;
+        ArrayList<String> info = Controllers.SettingsWindow.loadSettings();
         // initializing the first player and second player color.
         this.firstColor = Color.valueOf(info.get(1));
         this.secondColor = Color.valueOf(info.get(2));
@@ -78,6 +79,9 @@ public class ReversiBoardController implements Initializable {
             this.second.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.whitePlayer));
             this.blackScoreLabel.setText(this.first.getScore().toString());
             this.whiteScoreLabel.setText(this.second.getScore().toString());
+            if(this.endBool) {
+                endGame();
+            }
         });
         ReversiPiece[][] tempBoard = this.reversiBoard.getBoard();
         // go over the board cells
@@ -106,10 +110,10 @@ public class ReversiBoardController implements Initializable {
                             swapTurn();
                         }
                     }
-                    // check if the other player has no moves
-                    checkForNoMoves();
                     // show the new available moves
                     showAvailableMoves();
+                    // check if the other player has no moves
+                    checkForNoMoves();
                 });
             }
         }
@@ -152,7 +156,7 @@ public class ReversiBoardController implements Initializable {
             availableMoves = this.logic.availableMoves(this.reversiBoard, this.current.getType());
             if(availableMoves.size() == 0) {
                 // if true then end the game
-                endGame();
+                this.endBool = true;
                 return;
             }
             // show noMoves message
@@ -207,7 +211,7 @@ public class ReversiBoardController implements Initializable {
      * setting the action of close window to be switching back to menu.
      */
     public void closeGameWindow() {
-        Main.switchBackToMain();
+            Main.switchBackToMain();
     }
 
     /*
