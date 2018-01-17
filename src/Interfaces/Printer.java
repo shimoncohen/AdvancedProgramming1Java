@@ -1,5 +1,9 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
+package Interfaces;
+
+import General.Enum;
+import General.Point;
 
 import java.util.ArrayList;
 

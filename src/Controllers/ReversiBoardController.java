@@ -1,6 +1,12 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
+package Controllers;
 
+import General.Enum;
+import General.Player;
+import General.Point;
+import General.ReversiBoard;
+import Interfaces.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -15,7 +21,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import General.*;
 /**
  * Organizes all the controllers in the board.
  */

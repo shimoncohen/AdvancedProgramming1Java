@@ -1,11 +1,13 @@
-// 315383133 shimon cohen
+package General;// 315383133 shimon cohen
 // 302228275 Nadav Spitzer
 
+import General.Enum;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -17,6 +19,7 @@ public class ReversiPiece extends Circle {
     private GridPane grid;
     private StackPane stackPane;
     private Rectangle rectangle;
+    private Ellipse ellipse;
     private int row;
     private int col;
 
@@ -41,6 +44,7 @@ public class ReversiPiece extends Circle {
         this.rectangle.setStroke(Color.BLACK);
         this.rectangle.setFill(Color.GREEN);
         this.setFill(Color.GREEN);
+        this.ellipse = new Ellipse();
     }
 
     /***
@@ -52,14 +56,20 @@ public class ReversiPiece extends Circle {
         int minVal = Math.min(cellHeight, cellWidth);
         // setting the radius of the tile.
         this.setRadius(minVal / 2 - 2);
+        //todo ellipse
+        this.ellipse.setFill(this.getFill());
+        this.ellipse.setRadiusX(this.getRadius() - 3);
+        this.ellipse.setRadiusY(this.getRadius() - 5);
+        this.ellipse.setCenterY(this.getCenterY() - 5);
         this.rectangle.setWidth(cellWidth - 1);
         this.rectangle.setHeight(cellHeight - 1);
 
         if(this.getType() != Enum.type.notDefined) {
             this.setStroke(Color.BLACK);
+            this.ellipse.setStroke(Color.BLACK);
         }
-        this.stackPane.getChildren().removeAll(this.rectangle, this);
-        this.stackPane.getChildren().addAll(this.rectangle, this);
+        this.stackPane.getChildren().removeAll(this.rectangle, this, this.ellipse);
+        this.stackPane.getChildren().addAll(this.rectangle, this, this.ellipse);
         this.grid.getChildren().remove(this.stackPane);
         this.grid.add(this.stackPane, col, row);
     }

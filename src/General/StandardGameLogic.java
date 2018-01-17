@@ -1,5 +1,12 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
+package General;
+
+import General.Enum;
+import General.Player;
+import General.Point;
+import General.ReversiBoard;
+import Interfaces.GameLogic;
 
 import java.util.ArrayList;
 

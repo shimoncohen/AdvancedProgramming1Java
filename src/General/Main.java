@@ -1,6 +1,8 @@
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
+package General;
 
+import Controllers.SettingsWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -46,9 +48,9 @@ public class Main extends Application {
             try {
                 gameWindow = new Stage();
                 // loading preferences from fxml file.
-                HBox root = FXMLLoader.load(getClass().getResource("ReversiGame.fxml"));
+                HBox root = FXMLLoader.load(getClass().getResource("../Style/ReversiGame.fxml"));
                 Scene scene = new Scene(root, 500, 400);
-                scene.getStylesheets().add(getClass().getResource("Reversi.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("../Style/Reversi.css").toExternalForm());
                 // setting the game window
                 gameWindow.setMinWidth(500);
                 gameWindow.setMinHeight(400);
