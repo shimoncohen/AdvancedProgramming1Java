@@ -2,26 +2,20 @@
 // 302228275 Nadav Spitzer
 package Controllers;
 
+import General.*;
 import General.Enum;
-import General.Player;
-import General.Point;
-import General.ReversiBoard;
 import Interfaces.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import General.*;
 /**
  * Organizes all the controllers in the board.
  */
@@ -84,10 +78,10 @@ public class ReversiBoardController implements Initializable {
             this.second.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.whitePlayer));
             this.blackScoreLabel.setText(this.first.getScore().toString());
             this.whiteScoreLabel.setText(this.second.getScore().toString());
-            if(this.logic.isGameWon(this.reversiBoard)) {
-                this.endGame();
-                return;
-            }
+//            if(this.logic.isGameWon(this.reversiBoard)) {
+//                this.endGame();
+//                return;
+//            }
         });
         ReversiPiece[][] tempBoard = this.reversiBoard.getBoard();
         // go over the board cells
@@ -166,7 +160,8 @@ public class ReversiBoardController implements Initializable {
                 return;
             }
             // show noMoves message
-            noMovesPrompt();
+            NoMoveAlert.popUp(this.root);
+            //noMovesPrompt();
         }
     }
 
@@ -202,28 +197,31 @@ public class ReversiBoardController implements Initializable {
      */
     @FXML
     public void endGame() {
-        this.start.setDisable(true);
-        this.end.setDisable(true);
-        this.closeButton.setVisible(true);
-        this.reversiBoard.setDisable(true);
-        this.winnerLabel.setVisible(true);
-        this.winnerLabel2.setVisible(true);
+//        this.start.setDisable(true);
+//        this.end.setDisable(true);
+//        this.closeButton.setVisible(true);
+//        this.reversiBoard.setDisable(true);
+//        this.winnerLabel.setVisible(true);
+//        this.winnerLabel2.setVisible(true);
         if(Integer.valueOf(this.whiteScoreLabel.getText()) > Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("Second player");
-            this.winnerLabel2.setText("Wins!");
+            EndGameAlert.popUp(this.root, "Second player Wins!");
+            //this.winnerLabel.setText("Second player");
+            //this.winnerLabel2.setText("Wins!");
         } else if(Integer.valueOf(this.whiteScoreLabel.getText()) < Integer.valueOf(this.blackScoreLabel.getText())) {
-            this.winnerLabel.setText("First player");
-            this.winnerLabel2.setText("Wins!");
+            EndGameAlert.popUp(this.root, "First player Wins!");
+            //this.winnerLabel.setText("First player");
+            //this.winnerLabel2.setText("Wins!");
         } else {
-            this.winnerLabel.setText("Its a tie!");
+            EndGameAlert.popUp(this.root, "Its a tie!");
+            //this.winnerLabel.setText("Its a tie!");
         }
+        closeGameWindow();
     }
 
     /**
      * setting the action of close window to be switching back to menu.
-     * @param mouseEvent clicking the mouse.
      */
-    public void closeGameWindow(MouseEvent mouseEvent) {
+    public void closeGameWindow() {
         Main.switchBackToMain();
     }
 
@@ -285,28 +283,5 @@ public class ReversiBoardController implements Initializable {
                 }
             }
         }
-    }
-
-    /*
-     * function name: noMovesPrompt.
-     * input: none.
-     * output: none.
-     * operation: shows a window with no move message.
-     */
-    private void noMovesPrompt() {
-        // setting a new window.
-        Stage noMovesWindow = new Stage();
-        noMovesWindow.setTitle("No moves!");
-        noMovesWindow.centerOnScreen();
-        // set the label message.
-        Label noMovesLabel = new Label("No moves!\n turn goes to other player.");
-        noMovesLabel.setId("noMove");
-        VBox box = new VBox();
-        box.getChildren().add(noMovesLabel);
-        Scene scene = new Scene(box, 250, 40);
-        root.setDisable(true);
-        noMovesWindow.setScene(scene);
-        noMovesWindow.showAndWait();
-        root.setDisable(false);
     }
 }

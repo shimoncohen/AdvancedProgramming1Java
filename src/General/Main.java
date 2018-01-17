@@ -14,6 +14,13 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private final int MINBUTTONSIZE = 100;
+    private final int SETMINWIDTH = 500;
+    private final int SETMINHEIGHT = 400;
+    private final int SCENEMINHEIGHT = 300;
+    private final int SCENEMINWIDTH = 300;
+    private final int MAINWINDOWMINWIDTH = 140;
+    private final int MAINWINDOWMINHEIGHT = 200;
+    private final int VBOXSPACING = 20;
     // the 3 stages of the game - main, settings and game.
     private static Stage mainWindow;
     private static Scene layoutDisplay;
@@ -34,12 +41,12 @@ public class Main extends Application {
         mainWindow = primaryStage;
         mainWindow.setTitle("Reversi");
 
-        VBox layoutMain = new VBox(20);
-        layoutDisplay = new Scene(layoutMain, 300, 300);
+        VBox layoutMain = new VBox(VBOXSPACING);
+        layoutDisplay = new Scene(layoutMain, SCENEMINWIDTH, SCENEMINHEIGHT);
 
         // set height and width of window
-        mainWindow.setMinWidth(140);
-        mainWindow.setMinHeight(200);
+        mainWindow.setMinWidth(MAINWINDOWMINWIDTH);
+        mainWindow.setMinHeight(MAINWINDOWMINHEIGHT);
 
         // define the main windows buttons
         this.startGameButton = new Button("Start game!");
@@ -49,11 +56,11 @@ public class Main extends Application {
                 gameWindow = new Stage();
                 // loading preferences from fxml file.
                 HBox root = FXMLLoader.load(getClass().getResource("../Style/ReversiGame.fxml"));
-                Scene scene = new Scene(root, 500, 400);
+                Scene scene = new Scene(root, SETMINWIDTH, SETMINHEIGHT);
                 scene.getStylesheets().add(getClass().getResource("../Style/Reversi.css").toExternalForm());
                 // setting the game window
-                gameWindow.setMinWidth(500);
-                gameWindow.setMinHeight(400);
+                gameWindow.setMinWidth(SETMINWIDTH);
+                gameWindow.setMinHeight(SETMINHEIGHT);
                 gameWindow.setTitle("Reversi");
                 gameWindow.setScene(scene);
                 gameWindow.show();
@@ -71,7 +78,7 @@ public class Main extends Application {
         this.settingsButton.setMinWidth(MINBUTTONSIZE);
         // setting the close button
         this.closeButton = new Button("Close");
-        this.closeButton.setMinWidth(100);
+        this.closeButton.setMinWidth(MINBUTTONSIZE);
         // setting the action of the close button.
         this.closeButton.setOnMouseClicked(e -> {
             mainWindow.close();

@@ -31,6 +31,8 @@ public class SettingsWindow {
     private static final int SLIDERMAXWIDTH = 150;
     private static final double DEFAULTBOARDSIZE = 4;
     private static final double BLOCKINCREMENT = 0;
+    private static final int FIRSTSPACING = 10;
+    private static final int SECONDSPACING = 15;
 
     // defaults in case settings file dosent exist yet
     private static final String FIRSTPLAYER = "BlackPlayer";
@@ -81,7 +83,7 @@ public class SettingsWindow {
             this.boardSizeLabel.setText(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
         });
         // positioning the slider.
-        HBox slideLayout = new HBox(10);
+        HBox slideLayout = new HBox(FIRSTSPACING);
         slideLayout.setAlignment(Pos.CENTER);
         slideLayout.getChildren().addAll(sizeLabel, boardSize, boardSizeLabel);
 
@@ -114,12 +116,12 @@ public class SettingsWindow {
         });
 
         // setting the layout of the window.
-        VBox layout = new VBox(15);
+        VBox layout = new VBox(SECONDSPACING);
         Scene scene = new Scene(layout, WIDTH, HEIGHT);
         window.setScene(scene);
 
 
-        VBox innerLayout = new VBox(10);
+        VBox innerLayout = new VBox(FIRSTSPACING);
         layout.setAlignment(Pos.CENTER);
         innerLayout.setAlignment(Pos.CENTER);
 
