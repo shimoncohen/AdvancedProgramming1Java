@@ -78,10 +78,6 @@ public class ReversiBoardController implements Initializable {
             this.second.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.whitePlayer));
             this.blackScoreLabel.setText(this.first.getScore().toString());
             this.whiteScoreLabel.setText(this.second.getScore().toString());
-//            if(this.logic.isGameWon(this.reversiBoard)) {
-//                this.endGame();
-//                return;
-//            }
         });
         ReversiPiece[][] tempBoard = this.reversiBoard.getBoard();
         // go over the board cells
@@ -197,23 +193,12 @@ public class ReversiBoardController implements Initializable {
      */
     @FXML
     public void endGame() {
-//        this.start.setDisable(true);
-//        this.end.setDisable(true);
-//        this.closeButton.setVisible(true);
-//        this.reversiBoard.setDisable(true);
-//        this.winnerLabel.setVisible(true);
-//        this.winnerLabel2.setVisible(true);
         if(Integer.valueOf(this.whiteScoreLabel.getText()) > Integer.valueOf(this.blackScoreLabel.getText())) {
             EndGameAlert.popUp(this.root, "Second player Wins!");
-            //this.winnerLabel.setText("Second player");
-            //this.winnerLabel2.setText("Wins!");
         } else if(Integer.valueOf(this.whiteScoreLabel.getText()) < Integer.valueOf(this.blackScoreLabel.getText())) {
             EndGameAlert.popUp(this.root, "First player Wins!");
-            //this.winnerLabel.setText("First player");
-            //this.winnerLabel2.setText("Wins!");
         } else {
             EndGameAlert.popUp(this.root, "Its a tie!");
-            //this.winnerLabel.setText("Its a tie!");
         }
         closeGameWindow();
     }
