@@ -1,6 +1,12 @@
+package Controllers;
 // 315383133 shimon cohen
 // 302228275 Nadav Spitzer
 
+import StyleAndMain.Main;
+import StyleAndMain.ReversiBoard;
+import General.*;
+import General.Enum;
+import Interfaces.GameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
