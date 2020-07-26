@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
