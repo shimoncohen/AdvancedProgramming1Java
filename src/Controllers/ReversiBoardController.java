@@ -212,7 +212,7 @@ public class ReversiBoardController implements Initializable {
      * setting the action of close window to be switching back to menu.
      */
     public void closeGameWindow() {
-        Main.switchBackToMain();
+            Main.switchBackToMain();
     }
 
     /*
