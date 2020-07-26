@@ -1,7 +1,8 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
-package General;
+package StyleAndMain;
 
+import General.Enum;
+import General.Player;
+import General.ReversiPiece;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -23,12 +24,12 @@ public class ReversiBoard extends GridPane {
     public ReversiBoard(int size, Color firstColor, Color secondColor) {
         this.setGridLinesVisible(true);
         this.setId("reversiBoard");
-        this.getStylesheets().add(getClass().getResource("../Style/Reversi.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("../StyleAndMain/Reversi.css").toExternalForm());
         // setting the board size.
         this.size = size;
         // setting the board.
         this.board = new ReversiPiece[size][size];
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../Style/ReversiGame.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../StyleAndMain/ReversiGame.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         // adding the reversi pieces to the board.
@@ -103,9 +104,9 @@ public class ReversiBoard extends GridPane {
         int cellHeight = height / this.board.length;
         int cellWidth = width / this.board.length;
 
-        for(int i = 0; i < this.board.length; i++) {
-            for(int j = 0; j < this.board[i].length; j++) {
-                this.board[i][j].draw(cellWidth, cellHeight);
+        for (ReversiPiece[] reversiPieces : this.board) {
+            for (ReversiPiece reversiPiece : reversiPieces) {
+                reversiPiece.draw(cellWidth, cellHeight);
             }
         }
     }

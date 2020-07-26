@@ -1,6 +1,4 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
-package General;
+package StyleAndMain;
 
 import Controllers.SettingsWindow;
 import javafx.application.Application;
@@ -36,7 +34,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         // defining the main window.
         mainWindow = primaryStage;
         mainWindow.setTitle("Reversi");
@@ -55,9 +53,9 @@ public class Main extends Application {
             try {
                 gameWindow = new Stage();
                 // loading preferences from fxml file.
-                HBox root = FXMLLoader.load(getClass().getResource("../Style/ReversiGame.fxml"));
+                HBox root = FXMLLoader.load(getClass().getResource("../StyleAndMain/ReversiGame.fxml"));
                 Scene scene = new Scene(root, SETMINWIDTH, SETMINHEIGHT);
-                scene.getStylesheets().add(getClass().getResource("../Style/Reversi.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("../StyleAndMain/Reversi.css").toExternalForm());
                 // setting the game window
                 gameWindow.setMinWidth(SETMINWIDTH);
                 gameWindow.setMinHeight(SETMINHEIGHT);
@@ -80,9 +78,7 @@ public class Main extends Application {
         this.closeButton = new Button("Close");
         this.closeButton.setMinWidth(MINBUTTONSIZE);
         // setting the action of the close button.
-        this.closeButton.setOnMouseClicked(e -> {
-            mainWindow.close();
-        });
+        this.closeButton.setOnMouseClicked(e -> mainWindow.close());
 
         layoutMain.setAlignment(Pos.CENTER);
         layoutMain.getChildren().addAll(this.startGameButton, this.settingsButton, this.closeButton);

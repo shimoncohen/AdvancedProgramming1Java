@@ -1,5 +1,3 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
 package Controllers;
 
 import javafx.geometry.Pos;
@@ -79,9 +77,8 @@ public class SettingsWindow {
             boardSize.adjustValue(MINSIZE + i * 2);
         }
         // display chosen size when slider is dragged
-        boardSize.setOnMouseDragged(e -> {
-            this.boardSizeLabel.setText(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
-        });
+        boardSize.setOnMouseDragged(e -> this.boardSizeLabel.setText(String.valueOf(Math.floor(boardSize.getValue()))
+                                            .replace(".0", "")));
         // positioning the slider.
         HBox slideLayout = new HBox(FIRSTSPACING);
         slideLayout.setAlignment(Pos.CENTER);
@@ -98,22 +95,16 @@ public class SettingsWindow {
         Button closeAndsave = new Button("Close & save");
         // set action to the "save & close" button.
         closeAndsave.setOnAction(e -> {
-            try {
-                // write the current settings into the settings file.
-                writeSettings(boardSize.getValue(), firstColorPicker.getValue().toString(),
-                        secondColorPicker.getValue().toString(), selectStartingPlayer.getValue());
-            } catch (IOException exc) {
-                System.out.println("Error writing into settings file");
-            }
+            // write the current settings into the settings file.
+            writeSettings(boardSize.getValue(), firstColorPicker.getValue().toString(),
+                    secondColorPicker.getValue().toString(), selectStartingPlayer.getValue());
             window.close();
         });
 
         // setting the button that closes the window.
         Button closeNoSave = new Button("Close w/o saving");
         // set action to "close w/o save" button.
-        closeNoSave.setOnAction(e -> {
-            window.close();
-        });
+        closeNoSave.setOnAction(e -> window.close());
 
         // setting the layout of the window.
         VBox layout = new VBox(SECONDSPACING);
@@ -143,16 +134,12 @@ public class SettingsWindow {
      * @param firstColor the color of the first player.
      * @param secondColor the color of the second player.
      * @param starter the starting player.
-     * @throws IOException throws an error in case of not able writing into the file.
      */
     private static void writeSettings(Double size, String firstColor,
-                               String secondColor, String starter) throws IOException {
+                               String secondColor, String starter) {
         // opening the file.
         File file = new File(FILEPATH);
-        BufferedWriter bufferedWriter = null;
-        try {
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-            Writer writer = bufferedWriter;
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))) {
             // writing first player color
             writer.write("first Player color: " + firstColor + "\n");
             // writing second player color
@@ -163,8 +150,6 @@ public class SettingsWindow {
             writer.write("size: " + size + "\n");
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            bufferedWriter.close();
         }
     }
 
@@ -199,7 +184,7 @@ public class SettingsWindow {
                 // reading board size
                 line = line.replace("size: ", "");
                 // set values
-                boardSize.setValue(Double.valueOf(line));
+                boardSize.setValue(Double.parseDouble(line));
                 selectStartingPlayer.setValue(starter);
                 firstColorPicker.setValue(Color.valueOf(firstColor));
                 secondColorPicker.setValue(Color.valueOf(secondColor));
@@ -208,6 +193,7 @@ public class SettingsWindow {
                 System.out.println("Error reading from file");
             } finally {
                 try {
+                    assert bufferedReader != null;
                     bufferedReader.close();
                 } catch (IOException e) {
                     System.out.println("Error closing the file");
@@ -219,11 +205,7 @@ public class SettingsWindow {
             info.add(String.valueOf(Math.floor(boardSize.getValue())).replace(".0", ""));
             // if the file is empty
         } else {
-            try {
-                writeSettings(DEFAULTBOARDSIZE,"Black", "White", "BlackPlayer");
-            } catch (IOException e) {
-                System.out.println("Error creating the file");
-            }
+            writeSettings(DEFAULTBOARDSIZE,"Black", "White", "BlackPlayer");
             info.add(FIRSTPLAYER);
             info.add(FIRSTPLAYERCOLOR);
             info.add(SECONDPLAYERCOLOR);

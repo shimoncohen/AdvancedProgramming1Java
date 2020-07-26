@@ -1,10 +1,7 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
 package Interfaces;
 
 import General.Enum;
 import General.Point;
-
 import java.util.ArrayList;
 
 public interface Printer {
@@ -77,7 +74,7 @@ public interface Printer {
      * output: none.
      * operation: prints a given point.
      */
-    void printPoint(int point[]);
+    void printPoint(int[] point);
     /*
      * function name: printMove.
      * input: the player who made the move and the x and y values of the move.

@@ -1,5 +1,4 @@
-package General;// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
+package General;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;

@@ -1,7 +1,7 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
 package Controllers;
 
+import StyleAndMain.Main;
+import StyleAndMain.ReversiBoard;
 import General.*;
 import General.Enum;
 import Interfaces.GameLogic;
@@ -41,6 +41,7 @@ public class ReversiBoardController implements Initializable {
     private Player second;
     private Player current;
     private GameLogic logic;
+    private boolean endBool;
 
     // load from file settings
     private Color firstColor;
@@ -56,6 +57,7 @@ public class ReversiBoardController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.endBool = false;
         ArrayList<String> info = SettingsWindow.loadSettings();
         // initializing the first player and second player color.
         this.firstColor = Color.valueOf(info.get(1));
@@ -71,13 +73,16 @@ public class ReversiBoardController implements Initializable {
         this.current = first;
         this.logic = new StandardGameLogic();
         // initializing the board.
-        this.reversiBoard = new ReversiBoard(Integer.valueOf(info.get(3)), this.firstColor, this.secondColor);
+        this.reversiBoard = new ReversiBoard(Integer.parseInt(info.get(3)), this.firstColor, this.secondColor);
         this.reversiBoard.onMouseClickedProperty().setValue(e -> {
             // initializing the counting of players' scores.
             this.first.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.blackPlayer));
             this.second.setScore(this.logic.playerGrade(this.reversiBoard, Enum.type.whitePlayer));
             this.blackScoreLabel.setText(this.first.getScore().toString());
             this.whiteScoreLabel.setText(this.second.getScore().toString());
+            if(this.endBool) {
+                endGame();
+            }
         });
         ReversiPiece[][] tempBoard = this.reversiBoard.getBoard();
         // go over the board cells
@@ -106,10 +111,10 @@ public class ReversiBoardController implements Initializable {
                             swapTurn();
                         }
                     }
-                    // check if the other player has no moves
-                    checkForNoMoves();
                     // show the new available moves
                     showAvailableMoves();
+                    // check if the other player has no moves
+                    checkForNoMoves();
                 });
             }
         }
@@ -152,7 +157,7 @@ public class ReversiBoardController implements Initializable {
             availableMoves = this.logic.availableMoves(this.reversiBoard, this.current.getType());
             if(availableMoves.size() == 0) {
                 // if true then end the game
-                endGame();
+                this.endBool = true;
                 return;
             }
             // show noMoves message
@@ -193,9 +198,9 @@ public class ReversiBoardController implements Initializable {
      */
     @FXML
     public void endGame() {
-        if(Integer.valueOf(this.whiteScoreLabel.getText()) > Integer.valueOf(this.blackScoreLabel.getText())) {
+        if(Integer.parseInt(this.whiteScoreLabel.getText()) > Integer.parseInt(this.blackScoreLabel.getText())) {
             EndGameAlert.popUp(this.root, "Second player Wins!");
-        } else if(Integer.valueOf(this.whiteScoreLabel.getText()) < Integer.valueOf(this.blackScoreLabel.getText())) {
+        } else if(Integer.parseInt(this.whiteScoreLabel.getText()) < Integer.parseInt(this.blackScoreLabel.getText())) {
             EndGameAlert.popUp(this.root, "First player Wins!");
         } else {
             EndGameAlert.popUp(this.root, "Its a tie!");
@@ -260,9 +265,9 @@ public class ReversiBoardController implements Initializable {
         ArrayList<Point> options = this.logic.availableMoves(this.reversiBoard, current.getType());
         for(int i = 0; i < this.reversiBoard.getBoard().length; i++) {
             for (int j = 0; j < this.reversiBoard.getBoard()[i].length; j++) {
-                for (int k = 0; k < options.size(); k++) {
+                for (Point option : options) {
                     // shows the possible move as a yellow circle.
-                    if (options.get(k).getX() - 1 == i && options.get(k).getY() - 1 == j) {
+                    if (option.getX() - 1 == i && option.getY() - 1 == j) {
                         this.reversiBoard.getBoard()[i][j].setStroke(Color.YELLOW);
                     }
                 }

@@ -1,13 +1,7 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
 package General;
 
-import General.Enum;
-import General.Player;
-import General.Point;
-import General.ReversiBoard;
+import StyleAndMain.ReversiBoard;
 import Interfaces.GameLogic;
-
 import java.util.ArrayList;
 
 /**
@@ -16,7 +10,7 @@ import java.util.ArrayList;
 public class StandardGameLogic implements GameLogic {
     public ArrayList<Point> availableMoves(ReversiBoard board, Enum.type type1) {
         char a, o;
-        ArrayList<Point> options = new ArrayList<Point>();
+        ArrayList<Point> options = new ArrayList<>();
         if(type1 == Enum.type.blackPlayer) {
             //other players piece, to search for valid move.
             a = 'o';
@@ -56,9 +50,9 @@ public class StandardGameLogic implements GameLogic {
         }
         if (x > 0 && y > 0 && x <= board.getSize() && y <= board.getSize()) {
             //go over all of the possible moves.
-            for (int i = 0; i < options.size(); i++) {
+            for (Point option : options) {
                 //if the move is a possible move.
-                if (x == options.get(i).getX() && y == options.get(i).getY()) {
+                if (x == option.getX() && y == option.getY()) {
                     return true;
                 }
             }

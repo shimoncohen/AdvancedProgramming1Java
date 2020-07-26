@@ -1,5 +1,3 @@
-// 315383133 shimon cohen
-// 302228275 Nadav Spitzer
 package General;
 
 /*
@@ -60,9 +58,6 @@ public class Point {
      * operation: returns true if points are equal, false otherwise.
      */
     public boolean equals(Point other) {
-        if (this.x == other.getX() && this.y == other.getY()) {
-            return true;
-        }
-        return false;
+        return this.x == other.getX() && this.y == other.getY();
     }
 }
